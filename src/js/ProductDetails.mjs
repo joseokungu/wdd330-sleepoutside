@@ -28,14 +28,7 @@ export default class ProductDetails {
     section.querySelector("h2").textContent = this.product.NameWithoutBrand;
 
     const image = section.querySelector("img");
-    // Only these products have both image sizes available.
-    const responsiveProductIds = ["880RR", "985RF", "985PR", "344YJ"];
-    if (responsiveProductIds.includes(this.product.Id)) {
-      const smallImage = this.product.Image.replace(/~320\.jpg$/i, "~160.jpg");
-      image.srcset = `${smallImage} 160w, ${this.product.Image} 320w`;
-      image.sizes = "(max-width: 500px) calc(100vw - 2rem), 500px";
-    }
-    image.src = this.product.Image;
+    image.src = this.product.Images.PrimaryLarge;
     section.querySelector(".product-card__price").textContent =
       `$${this.product.FinalPrice}`;
     section.querySelector(".product__color").textContent =
