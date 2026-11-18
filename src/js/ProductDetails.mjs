@@ -26,12 +26,14 @@ export default class ProductDetails {
     const section = document.querySelector("#product-detail");
     section.querySelector("h3").textContent = this.product.Brand.Name;
     section.querySelector("h2").textContent = this.product.NameWithoutBrand;
-    section.querySelector("img").src = this.product.Image;
-    section.querySelector(".product-card__price").textContent =
-      `$${this.product.FinalPrice}`;
-    section.querySelector(".product__color").textContent =
-      this.product.Colors[0].ColorName;
-    section.querySelector(".product__description").innerHTML =
-      this.product.DescriptionHtmlSimple;
+
+   const image = section.querySelector("img");
+
+image.src =
+  this.product.Images.PrimaryLarge ||
+  this.product.Images.PrimaryExtraLarge ||
+  this.product.Images.PrimaryMedium;
+
+image.alt = this.product.NameWithoutBrand;
   }
 }
