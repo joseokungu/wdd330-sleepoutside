@@ -27,8 +27,24 @@ export default class ProductDetails {
     section.querySelector("h3").textContent = this.product.Brand.Name;
     section.querySelector("h2").textContent = this.product.NameWithoutBrand;
     section.querySelector("img").src = this.product.Image;
-    section.querySelector(".product-card__price").textContent =
-      `$${this.product.FinalPrice}`;
+    const priceElement = section.querySelector(".product-card__price");
+
+    priceElement.textContent = `$${this.product.FinalPrice}`;
+
+    const originalPrice = this.product.SuggestedRetailPrice;
+    const finalPrice = this.product.FinalPrice;
+
+    if (originalPrice > finalPrice && originalPrice > 0) {
+      const discountPercentage = Math.round(
+        ((originalPrice - finalPrice) / originalPrice) * 100,
+      );
+
+      const discountBadge = document.createElement("span");
+      discountBadge.classList.add("product-card__discount");
+      discountBadge.textContent = `${discountPercentage}% OFF`;
+
+      priceElement.insertAdjacentElement("afterend", discountBadge);
+    }
     section.querySelector(".product__color").textContent =
       this.product.Colors[0].ColorName;
     section.querySelector(".product__description").innerHTML =
