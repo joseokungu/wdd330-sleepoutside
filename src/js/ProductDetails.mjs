@@ -27,13 +27,39 @@ export default class ProductDetails {
     section.querySelector("h3").textContent = this.product.Brand.Name;
     section.querySelector("h2").textContent = this.product.NameWithoutBrand;
 
-   const image = section.querySelector("img");
+    const image = section.querySelector("img");
 
-image.src =
-  this.product.Images.PrimaryLarge ||
-  this.product.Images.PrimaryExtraLarge ||
-  this.product.Images.PrimaryMedium;
+    image.src =
+      this.product.Images?.PrimaryLarge ||
+      this.product.Images?.PrimaryExtraLarge ||
+      this.product.Images?.PrimaryMedium ||
+      this.product.Image;
 
-image.alt = this.product.NameWithoutBrand;
+    image.alt = this.product.NameWithoutBrand;
+
+    const priceElement = section.querySelector(".product-card__price");
+
+    priceElement.textContent = `$${this.product.FinalPrice}`;
+
+    const originalPrice = this.product.SuggestedRetailPrice;
+    const finalPrice = this.product.FinalPrice;
+
+    if (originalPrice > finalPrice && originalPrice > 0) {
+      const discountPercentage = Math.round(
+        ((originalPrice - finalPrice) / originalPrice) * 100,
+      );
+
+      const discountBadge = document.createElement("span");
+      discountBadge.classList.add("product-card__discount");
+      discountBadge.textContent = `${discountPercentage}% OFF`;
+
+      priceElement.insertAdjacentElement("afterend", discountBadge);
+    }
+
+    section.querySelector(".product__color").textContent =
+      this.product.Colors[0].ColorName;
+
+    section.querySelector(".product__description").innerHTML =
+      this.product.DescriptionHtmlSimple;
   }
 }
