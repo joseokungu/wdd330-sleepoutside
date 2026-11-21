@@ -1,5 +1,5 @@
 
-import { getLocalStorage } from "./utils.mjs";
+import { alertMessage, getLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 function formDataToJSON(formElement) {
@@ -59,11 +59,9 @@ export default class CheckoutProcess {
 
   calculateOrderTotal() {
     this.tax = this.itemTotal * 0.06;
-
     this.shipping = this.list.length
       ? 10 + (this.list.length - 1) * 2
       : 0;
-
     this.orderTotal = this.itemTotal + this.tax + this.shipping;
 
     this.displayOrderTotals();
@@ -84,17 +82,30 @@ export default class CheckoutProcess {
   }
 
   async checkout(form) {
-    const order = formDataToJSON(form);
+    try {
+      const order = formDataToJSON(form);
 
-    order.orderDate = new Date().toISOString();
-    order.orderTotal = this.orderTotal.toFixed(2);
-    order.shipping = this.shipping;
-    order.tax = this.tax.toFixed(2);
-    order.items = packageItems(this.list);
+      order.orderDate = new Date().toISOString();
+      order.orderTotal = this.orderTotal.toFixed(2);
+      order.shipping = this.shipping;
+      order.tax = this.tax.toFixed(2);
+      order.items = packageItems(this.list);
 
-    const response = await this.dataSource.checkout(order);
+      await this.dataSource.checkout(order);
 
-    console.log("Checkout response:", response);
-    return response;
+      localStorage.removeItem(this.key);
+      window.location.href = "/checkout/success.html";
+    } catch (err) {
+      const serverMessage = err?.message ?? err;
+      const message =
+        typeof serverMessage === "string"
+          ? serverMessage
+          : serverMessage?.message || JSON.stringify(serverMessage);
+
+      alertMessage(
+        message ||
+          "Your order could not be placed. Please check your details and try again.",
+      );
+    }
   }
 }

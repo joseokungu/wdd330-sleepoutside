@@ -14,12 +14,7 @@ document
 
 document
   .querySelector("#checkout-form")
-  .addEventListener("submit", async (event) => {
+  .addEventListener("submit", (event) => {
     event.preventDefault();
-
-    try {
-      await myCheckout.checkout(event.currentTarget);
-    } catch (error) {
-      console.error("Checkout failed:", error);
-    }
+    myCheckout.checkout(event.currentTarget);
   });
