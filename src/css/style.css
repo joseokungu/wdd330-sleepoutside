@@ -203,6 +203,17 @@ button {
   width: 100%;
 }
 
+.product-card__discount {
+  display: inline-block;
+  margin-left: 0.5em;
+  padding: 0.3em 0.6em;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 4px;
+  font-size: var(--small-font);
+  font-weight: bold;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
@@ -313,4 +324,101 @@ footer {
   .cart svg.cart-bounce {
     animation: none;
   }
+}
+
+/* Checkout layout */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(250px, 1fr);
+  gap: 2rem;
+  align-items: start;
+  padding: 1rem;
+}
+
+.checkout-form {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.checkout-form h3 {
+  margin-top: 1rem;
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 0.65rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+  font: inherit;
+}
+
+.order-summary {
+  border: 1px solid var(--light-grey);
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.order-summary p {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.order-total {
+  font-weight: bold;
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: 2px solid var(--primary-color);
+}
+
+.checkout-button {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background-color: var(--secondary-color);
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Custom application alerts */
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #fff3cd;
+  color: #664d03;
+  border: 1px solid #ffecb5;
+  border-radius: 5px;
+}
+
+.alert p {
+  margin: 0;
+  padding: 0;
+}
+
+.alert button {
+  display: inline-block;
+  margin: 0;
+  padding: 0.2rem 0.6rem;
+  background: transparent;
+  color: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
 }
