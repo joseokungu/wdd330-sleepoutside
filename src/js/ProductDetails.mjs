@@ -20,6 +20,19 @@ export default class ProductDetails {
     const cart = getLocalStorage("so-cart") || [];
     cart.push(this.product);
     setLocalStorage("so-cart", cart);
+
+    // Animate the backpack icon after adding a product.
+    const cartIcon = document.querySelector(".cart svg");
+
+    if (cartIcon) {
+      cartIcon.classList.remove("cart-bounce");
+
+      // Force the browser to recalculate the SVG layout.
+      void cartIcon.getBoundingClientRect().width;
+
+      // Start the animation again.
+      cartIcon.classList.add("cart-bounce");
+    }
   }
 
   renderProductDetails() {
@@ -27,13 +40,13 @@ export default class ProductDetails {
     section.querySelector("h3").textContent = this.product.Brand.Name;
     section.querySelector("h2").textContent = this.product.NameWithoutBrand;
 
-   const image = section.querySelector("img");
+    const image = section.querySelector("img");
 
-image.src =
-  this.product.Images.PrimaryLarge ||
-  this.product.Images.PrimaryExtraLarge ||
-  this.product.Images.PrimaryMedium;
+    image.src =
+      this.product.Images.PrimaryLarge ||
+      this.product.Images.PrimaryExtraLarge ||
+      this.product.Images.PrimaryMedium;
 
-image.alt = this.product.NameWithoutBrand;
+    image.alt = this.product.NameWithoutBrand;
   }
 }
