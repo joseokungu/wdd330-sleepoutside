@@ -26,7 +26,11 @@ export default class ProductDetails {
     const section = document.querySelector("#product-detail");
     section.querySelector("h3").textContent = this.product.Brand.Name;
     section.querySelector("h2").textContent = this.product.NameWithoutBrand;
-    section.querySelector("img").src = this.product.Image;
+    const image = section.querySelector("img");
+
+    image.src = this.product.Image;
+    image.alt = this.product.NameWithoutBrand;
+
     const priceElement = section.querySelector(".product-card__price");
 
     priceElement.textContent = `$${this.product.FinalPrice}`;
@@ -45,8 +49,10 @@ export default class ProductDetails {
 
       priceElement.insertAdjacentElement("afterend", discountBadge);
     }
+
     section.querySelector(".product__color").textContent =
       this.product.Colors[0].ColorName;
+
     section.querySelector(".product__description").innerHTML =
       this.product.DescriptionHtmlSimple;
   }
