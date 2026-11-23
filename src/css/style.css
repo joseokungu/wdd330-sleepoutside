@@ -384,3 +384,21 @@ footer {
   cursor: pointer;
 }
 
+/* Product discount indicator */
+.discount-badge {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  margin: 0.3rem 0;
+  background-color: #c0392b;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.product-card__original-price {
+  color: var(--dark-grey);
+  font-size: var(--small-font);
+  text-decoration: line-through;
+  margin: 0.3rem 0;
+}
