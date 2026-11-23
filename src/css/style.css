@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -297,6 +297,34 @@ footer {
   }
 }
 
+/* Animate the backpack when a product is added */
+@keyframes cartBounce {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  40% {
+    transform: translateY(-8px) scale(1.2);
+  }
+
+  70% {
+    transform: translateY(2px) scale(0.95);
+  }
+}
+
+.cart svg.cart-bounce {
+  animation: cartBounce 0.6s ease-in-out;
+  transform-origin: center;
+}
+
+/* Respect accessibility preferences */
+@media (prefers-reduced-motion: reduce) {
+  .cart svg.cart-bounce {
+    animation: none;
+  }
+}
 
 /* Checkout layout */
 .checkout-layout {
@@ -394,4 +422,3 @@ footer {
   line-height: 1;
   cursor: pointer;
 }
-

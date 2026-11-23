@@ -1,10 +1,4 @@
-
-import {
-  alertMessage,
-  getLocalStorage,
-  setLocalStorage,
-} from "./utils.mjs";
-
+import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -22,15 +16,27 @@ export default class ProductDetails {
       .addEventListener("click", () => this.addProductToCart());
   }
 
-  
-addProductToCart() {
-  const cart = getLocalStorage("so-cart") || [];
-  cart.push(this.product);
-  setLocalStorage("so-cart", cart);
+  addProductToCart() {
+    const cart = getLocalStorage("so-cart") || [];
+    cart.push(this.product);
+    setLocalStorage("so-cart", cart);
 
-  alertMessage(`${this.product.Name} was added to your cart.`, false);
-}
+    // Show the confirmation message from PR #26.
+    alertMessage(`${this.product.Name} was added to your cart.`, false);
 
+    // Animate the backpack icon from PR #24.
+    const cartIcon = document.querySelector(".cart svg");
+
+    if (cartIcon) {
+      cartIcon.classList.remove("cart-bounce");
+
+      // Force the SVG layout to recalculate.
+      void cartIcon.getBoundingClientRect().width;
+
+      // Restart the animation.
+      cartIcon.classList.add("cart-bounce");
+    }
+  }
 
   renderProductDetails() {
     const section = document.querySelector("#product-detail");
