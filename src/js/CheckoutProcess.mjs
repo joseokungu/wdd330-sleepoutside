@@ -1,4 +1,3 @@
-
 import { alertMessage, getLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
@@ -46,9 +45,7 @@ export default class CheckoutProcess {
       0,
     );
 
-    const subtotal = document.querySelector(
-      `${this.outputSelector} #subtotal`,
-    );
+    const subtotal = document.querySelector(`${this.outputSelector} #subtotal`);
     const itemCount = document.querySelector(
       `${this.outputSelector} #item-count`,
     );
@@ -59,9 +56,7 @@ export default class CheckoutProcess {
 
   calculateOrderTotal() {
     this.tax = this.itemTotal * 0.06;
-    this.shipping = this.list.length
-      ? 10 + (this.list.length - 1) * 2
-      : 0;
+    this.shipping = this.list.length ? 10 + (this.list.length - 1) * 2 : 0;
     this.orderTotal = this.itemTotal + this.tax + this.shipping;
 
     this.displayOrderTotals();
@@ -69,9 +64,7 @@ export default class CheckoutProcess {
 
   displayOrderTotals() {
     const tax = document.querySelector(`${this.outputSelector} #tax`);
-    const shipping = document.querySelector(
-      `${this.outputSelector} #shipping`,
-    );
+    const shipping = document.querySelector(`${this.outputSelector} #shipping`);
     const orderTotal = document.querySelector(
       `${this.outputSelector} #order-total`,
     );
@@ -82,6 +75,9 @@ export default class CheckoutProcess {
   }
 
   async checkout(form) {
+    // Remove error messages from previous checkout attempts.
+    document.querySelectorAll("main .alert").forEach((alert) => alert.remove());
+
     try {
       const order = formDataToJSON(form);
 
