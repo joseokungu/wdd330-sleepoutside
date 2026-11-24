@@ -8,22 +8,24 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <script src="../js/checkout.js" type="module"></script>
   </head>
 
   <body>
     <header class="divider">
       <div class="logo">
-        <img src="images/noun_Tent_2517.svg" alt="tent image for logo" />
+        <img src="/images/noun_Tent_2517.svg" alt="tent image for logo" />
 
-        <a href="index.html">
+        <a href="/index.html">
           Sleep
           <span class="highlight">Outside</span>
         </a>
       </div>
 
       <div class="cart">
-        <a href="cart/">
+        <a href="/cart/">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
             <path
               d="M18.9 32.6c1.1 2.4 2.5 3.3 5.4 3.3 1.6 0 3.6-0.3 5.9-0.6 3.2-0.5 6.9-1 11.2-1 2.1 0 4.3 0.1 6.4 0.3 2.1 0.1 4.2 0.3 6.1 0.3 3.2 0 5.2-0.4 5.9-1.2 2.7-2.7 2.8-8.8 2.9-14.6 0.1-6.7 0.2-14.5 4.6-18.7 -0.5 0-1 0-1.6 0 -14.2 0-37.5 0-41.1 0C15.6 6.2 14.9 23.6 18.9 32.6z"
@@ -57,8 +59,96 @@
     </header>
 
     <main class="divider">
-      <section class="products">
+      <section class="checkout products">
         <h2>Review & Place your Order</h2>
+
+        <section class="checkout__summary" aria-labelledby="summary-heading">
+          <h3 id="summary-heading">Order summary</h3>
+          <ul class="checkout__items"></ul>
+          <p class="checkout__total-row">
+            <strong>Total</strong>
+            <strong class="checkout__total">$0.00</strong>
+          </p>
+        </section>
+
+        <form id="checkout-form">
+          <fieldset>
+            <legend>Shipping information</legend>
+            <label for="fname">First name</label>
+            <input id="fname" name="fname" autocomplete="given-name" required />
+
+            <label for="lname">Last name</label>
+            <input id="lname" name="lname" autocomplete="family-name" required />
+
+            <label for="street">Street address</label>
+            <input
+              id="street"
+              name="street"
+              autocomplete="street-address"
+              required
+            />
+
+            <label for="city">City</label>
+            <input id="city" name="city" autocomplete="address-level2" required />
+
+            <label for="state">State (2-letter code)</label>
+            <input
+              id="state"
+              name="state"
+              autocomplete="address-level1"
+              pattern="[A-Za-z]{2}"
+              title="Enter the two-letter state code."
+              required
+            />
+
+            <label for="zip">ZIP code</label>
+            <input
+              id="zip"
+              name="zip"
+              autocomplete="postal-code"
+              inputmode="numeric"
+              pattern="[0-9]{5}(-[0-9]{4})?"
+              title="Enter a 5-digit ZIP code, optionally followed by a 4-digit extension."
+              required
+            />
+          </fieldset>
+
+          <fieldset>
+            <legend>Payment information</legend>
+            <label for="cardNumber">Card number</label>
+            <input
+              id="cardNumber"
+              name="cardNumber"
+              autocomplete="cc-number"
+              inputmode="numeric"
+              pattern="[0-9]{13,19}"
+              title="Enter 13 to 19 digits without spaces."
+              required
+            />
+
+            <label for="expiration">Expiration date</label>
+            <input
+              id="expiration"
+              name="expiration"
+              type="month"
+              autocomplete="cc-exp"
+              required
+            />
+
+            <label for="code">Security code</label>
+            <input
+              id="code"
+              name="code"
+              inputmode="numeric"
+              autocomplete="cc-csc"
+              pattern="[0-9]{3,4}"
+              title="Enter the 3- or 4-digit security code."
+              required
+            />
+          </fieldset>
+
+          <button type="submit">Place order</button>
+        </form>
       </section>
     </main>
 

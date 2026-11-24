@@ -1,0 +1,158 @@
+# Travel Planner & Destination Explorer
+
+## 1. Overview
+
+For my final project, I would like to create a travel planning application. The goal of the application is to help users learn about different countries, view pictures of destinations, check weather conditions, and save places they would like to visit.
+
+I chose this project because I enjoy traveling and discovering new places. I also wanted a project that would allow me to work with different APIs and practice the JavaScript concepts we have learned during this course.
+
+## 2. Target Audience
+
+This application is intended for people who are interested in traveling and exploring new destinations. It could be useful for students, families, and anyone planning a trip who wants quick access to information about a country or city.
+
+## 3. Major Functions
+
+### 1. Search for a destination
+Users can search for a country or city and receive information about it.
+
+### 2. Display country information
+The application will show details such as the capital city, population, currency, and languages.
+
+### 3. Show country flag
+The country flag will be displayed with the destination information.
+
+### 4. Display current weather
+Users can see the current weather conditions for the selected destination.
+
+### 5. Show destination photos
+The application will display photos related to the destination.
+
+### 6. Save favorite destinations
+Users can save destinations to a favorites list.
+
+### 7. Create a travel plan
+Users can create their own travel plans and notes.
+
+### 8. View recent searches
+The application will keep track of recently searched destinations.
+
+## 4. Wireframes
+
+### Mobile View
+
+Header
+
+Search Bar
+
+Destination Image
+
+Country Information
+
+Weather Information
+
+Favorites Button
+
+Travel Notes Section
+
+Footer
+
+### Desktop View
+
+Header and Navigation
+
+Search Section
+
+Destination Image
+
+Country Information Panel
+
+Weather Panel
+
+Favorites Section
+
+Travel Notes Section
+
+Footer
+
+## 5. External Data
+
+### API 1: REST Countries API
+This API will provide information about countries, including population, capital city, currencies, languages, and flags.
+
+### API 2: Unsplash API
+This API will provide images related to destinations and countries.
+
+### Data Stored
+
+Using Local Storage, I plan to save:
+
+- Favorite destinations
+- Travel notes
+- Recent searches
+
+## 6. Module List
+
+- main.js
+- search.js
+- countriesAPI.js
+- imagesAPI.js
+- storage.js
+- favorites.js
+- notes.js
+- ui.js
+
+Each module will be responsible for a specific part of the application to keep the code organized and easier to maintain.
+
+## 7. Graphic Identity
+
+### Colors
+
+Primary Color: #2563EB
+
+Secondary Color: #0EA5E9
+
+Accent Color: #F59E0B
+
+Background Color: #F8FAFC
+
+### Typography
+
+- Poppins for headings
+- Open Sans for body text
+
+### Application Icon
+
+The icon will combine a location pin and a suitcase. This represents travel and trip planning.
+
+## 8. Timeline
+
+### Week 5
+
+- Create repository
+- Build project structure
+- Test APIs
+- Design layout and navigation
+
+### Week 6
+
+- Implement search functionality
+- Connect APIs
+- Create destination cards
+- Add favorites feature
+
+### Week 7
+
+- Complete travel notes feature
+- Improve responsiveness
+- Add animations
+- Test application
+- Fix bugs
+- Deploy final project
+
+## 9. Project Planning
+
+I will use Trello to organize the tasks for the project. The board will include sections for Backlog, To Do, In Progress, Testing, and Completed tasks.
+
+## 10. Challenges
+
+I think the biggest challenge will be working with multiple APIs and making sure the data displays correctly. Another challenge may be organizing the JavaScript modules and keeping the code clean and easy to maintain. I will also need to make sure the application works well on both mobile and desktop devices.
