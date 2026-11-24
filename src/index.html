@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/main.js" type="module"></script>
   </head>
 
   <body>
@@ -62,6 +63,17 @@
 
       <section class="products">
         <h2>Top Products</h2>
+        <div class="product-search">
+          <label for="product-search">Search products</label>
+          <input
+            id="product-search"
+            type="search"
+            name="search"
+            placeholder="Search by product name"
+            autocomplete="off"
+          />
+        </div>
+        <p class="no-products" role="status" hidden>No products found</p>
         <ul class="product-list">
           <li class="product-card">
             <a href="product_pages/?product=880RR">

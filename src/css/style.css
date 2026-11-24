@@ -168,6 +168,31 @@ button {
   color: var(--dark-grey);
 }
 
+.product-search {
+  max-width: 500px;
+  margin: 1rem auto;
+}
+
+.product-search label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: bold;
+}
+
+.product-search input {
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 0.25rem;
+  font: inherit;
+}
+
+.no-products {
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;

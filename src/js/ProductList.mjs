@@ -3,7 +3,7 @@ import { renderListWithTemplate } from "./utils.mjs";
 function productCardTemplate(product) {
   return `
     <li class="product-card">
-      <a href="product_pages/?products=${product.Id}">
+      <a href="product_pages/?product=${product.Id}">
         <img src="${product.Image}" alt="${product.Name}">
         <h2>${product.Brand.Name}</h2>
         <h3>${product.Name}</h3>
@@ -18,20 +18,37 @@ export default class ProductList {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.products = [];
   }
 
   async init() {
     const list = await this.dataSource.getData();
+    this.products = list;
     this.renderList(list);
+    this.addSearchListener();
   }
 
   renderList(list) {
-    // const htmlStrings = list.map(productCardTemplate);
-    // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
+    renderListWithTemplate(productCardTemplate, this.listElement, list, "afterbegin", true);
 
-    // apply use new utility function instead of the commented code above
-    renderListWithTemplate(productCardTemplate, this.listElement, list);
-
+    const noResults = document.querySelector(".no-products");
+    if (noResults) {
+      noResults.hidden = list.length !== 0;
+    }
   }
 
+  addSearchListener() {
+    const searchInput = document.querySelector("#product-search");
+    if (!searchInput) {
+      return;
+    }
+
+    searchInput.addEventListener("input", (event) => {
+      const searchTerm = event.target.value.trim().toLowerCase();
+      const filteredProducts = this.products.filter((product) =>
+        product.Name.toLowerCase().includes(searchTerm),
+      );
+      this.renderList(filteredProducts);
+    });
+  }
 }
