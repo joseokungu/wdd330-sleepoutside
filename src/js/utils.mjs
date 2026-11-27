@@ -66,6 +66,21 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
+
+  const searchForm = document.querySelector("#search-form");
+  const searchInput = document.querySelector("#search-input");
+
+  if (searchForm && searchInput) {
+    searchForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const query = searchInput.value.trim();
+
+      if (query) {
+        window.location.href = `/product_listing/?search=${encodeURIComponent(query)}`;
+      }
+    });
+  }
 }
 
 

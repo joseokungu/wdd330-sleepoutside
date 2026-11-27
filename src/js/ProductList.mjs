@@ -14,25 +14,32 @@ function productCardTemplate(product) {
 }
 
 export default class ProductList {
-  constructor(category, dataSource, listElement) {
+  constructor(category, dataSource, listElement, searchQuery) {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.searchQuery = searchQuery;
   }
-
   async init() {
-    const list = await this.dataSource.getData(this.category);
+    let list;
+    let title;
+
+    if (this.searchQuery) {
+      list = await this.dataSource.searchProducts(this.searchQuery);
+      title = `Search Results for "${this.searchQuery}"`;
+    } else {
+      list = await this.dataSource.getData(this.category);
+
+      title = this.category
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+    }
+
     this.renderList(list);
-
-    const title = this.category
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-
     document.querySelector(".title").textContent = title;
   }
-
-  renderList(list) {
+    renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
 }
