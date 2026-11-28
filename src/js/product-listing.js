@@ -5,9 +5,16 @@ import ProductList from "./ProductList.mjs";
 loadHeaderFooter();
 
 const category = getParam("category");
+const searchQuery = getParam("search");
+
 const dataSource = new ExternalServices();
 const listElement = document.querySelector(".product-list");
 
-const myList = new ProductList(category, dataSource, listElement);
+const myList = new ProductList(
+  category,
+  dataSource,
+  listElement,
+  searchQuery,
+);
 
 myList.init();
